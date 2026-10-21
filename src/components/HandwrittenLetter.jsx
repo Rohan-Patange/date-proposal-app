@@ -33,6 +33,25 @@ export const HandwrittenLetter = () => {
 
   const renderedText = fullText.slice(0, displayedLength);
 
+  // Handle confirmation and send email notification via Formspree
+  const handleConfirm = async () => {
+    if (!selectedDay) return;
+    setAccepted(true);
+
+    try {
+      await fetch("https://formspree.io/f/xjygqjrr", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: `Mana confirmed her chai date for: ${selectedDay.label} ☕❤️`,
+          selectedDate: selectedDay.label,
+        }),
+      });
+    } catch (error) {
+      console.error("Failed to send notification email:", error);
+    }
+  };
+
   return (
     <div 
       style={{ background: "linear-gradient(135deg, #2a0e19 0%, #3d1423 50%, #1a0812 100%)" }}
@@ -52,7 +71,7 @@ export const HandwrittenLetter = () => {
             style={{ backgroundColor: "#fffdf7", borderColor: "#f3e2d5" }}
             className="max-w-4xl w-full border p-8 sm:p-16 rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.5)] relative z-10 flex flex-col justify-between my-4"
           >
-            {/* Top Lyric Ribbon with Clean Stacked Lines */}
+            {/* Top Lyric Ribbon */}
             <div 
               style={{ backgroundColor: "#fdf2f4", borderColor: "#f8d7da" }}
               className="w-full overflow-hidden border py-4 px-6 text-center mb-8 rounded-2xl"
@@ -150,7 +169,7 @@ export const HandwrittenLetter = () => {
                     </div>
 
                     <button
-                      onClick={() => setAccepted(true)}
+                      onClick={handleConfirm}
                       disabled={!selectedDay}
                       style={
                         selectedDay
