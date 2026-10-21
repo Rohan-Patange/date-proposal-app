@@ -80,6 +80,8 @@ export const HandwrittenLetter = () => {
                 🎵 Hansta rehta hoon tujhse mil kar kyun aaj kal<br />
                 Badle badle hain mere tevar kyun aaj kal<br />
                 Aankhein meri har jagah dhoondhe tujhe bewajah<br />
+                Ye main hoon ya koi aur hai meri tarah<br />
+                Kaise hua kaise hua<br />
                 Tu itna zaroori kaise hua... ✨
               </p>
             </div>
